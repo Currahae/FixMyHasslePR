@@ -66,8 +66,10 @@ signUpButton.addEventListener('click', async (event) => {
     if (isEmailValid
         && isUsernameValid
         && isPasswordConfirmationValid) {
-            const isUserExists = await userExistsValidation(usernameInput, emailInput, errorMessage);
+            const isUserExists = await userExistsValidation(usernameInput, emailInput);
             if (!isUserExists) {
+                console.log('user dont exists');
+                errorMessage.classList.remove('sign-up-modal__error-message--visible');
                 localStorage.setItem('isLogedIn', 'true')
                 createNewUser();
                 closeModal(event,
@@ -80,6 +82,9 @@ signUpButton.addEventListener('click', async (event) => {
                           emailInput,
                           passwordInput,
                            confirmPasswordInput);
+            } else {
+                console.log('user already exists');
+                errorMessage.classList.add('sign-up-modal__error-message--visible');
             }
         } else {
             console.log('wrong data for user creation')

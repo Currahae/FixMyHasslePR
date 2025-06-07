@@ -12,20 +12,30 @@ async function getTopSolvers() {
 
 const topSolversList = document.querySelector('.top-solvers__list');
 
-getTopSolvers().then(users => {
-    console.log(users);
-    for (let i = 0; i < 5; i++) {
-        topSolversList.innerHTML += `<div class="top-solvers__item">
-                        <div class="top-solvers__item-image-container">
-                            <div class="top-solvers__item-image">
-                                <img src="${users[i].avatar}" alt="Default avatar">
+const userProfileButton = document.querySelector('.navbar__user-profile')
+const userProfileDropdown = document.querySelector(".navbar__user-profile-dropdown")
+
+if (topSolversList) {
+    getTopSolvers().then(users => {
+        console.log(users);
+        for (let i = 0; i < 5; i++) {
+            topSolversList.innerHTML += `<div class="top-solvers__item">
+                            <div class="top-solvers__item-image-container">
+                                <div class="top-solvers__item-image">
+                                    <img src="${users[i].avatar}" alt="Default avatar">
+                                </div>
                             </div>
-                        </div>
-                        <div class="top-solvers__item-user-container">
-                            <div class="top-solvers__item-name">${users[i].username}</div>
-                            <div class="top-solvers__item-rating">${users[i].count_of_posts}  tickets solved</div>
-                        </div>
-                    </div>`
-    }
+                            <div class="top-solvers__item-user-container">
+                                <div class="top-solvers__item-name">${users[i].username}</div>
+                                <div class="top-solvers__item-rating">${users[i].count_of_posts}  tickets solved</div>
+                            </div>
+                        </div>`
+        }
+    })
+}
+
+userProfileButton.addEventListener('click', () => {
+    userProfileDropdown.classList.toggle('navbar__user-profile-dropdown--open')
 })
+
 

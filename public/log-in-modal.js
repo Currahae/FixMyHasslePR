@@ -61,6 +61,28 @@ usernameInput.addEventListener('focus', () => inputValidState(usernameInput));
 
 passwordInput.addEventListener('focus', () => inputValidState(passwordInput));
 
-confirmPasswordInput.addEventListener('focus', () => inputValidState(confirmPasswordInput));
+logInButton.addEventListener('click', async (event) => {
+    const isEmailValid = emailInputValidation(emailInput);
+    const isUsernameValid = usernameInputValidation(usernameInput);
 
-
+    if (isEmailValid
+        && isUsernameValid) {
+            const isUserExists = await userExistsValidation(usernameInput, emailInput, errorMessage);
+            if (!isUserExists) {
+                localStorage.setItem('isLogedIn', 'true')
+                createNewUser();
+                closeModal(event,
+                    signUpModalOverlay,
+                     logInButton,
+                      errorMessage,
+                       errorMessageVisibleClassName,
+                        modalOverlayVisibleClassName,
+                         usernameInput,
+                          emailInput,
+                          passwordInput,
+                           confirmPasswordInput);
+            }
+        } else {
+            console.log('wrong data for user creation')
+        }
+});
