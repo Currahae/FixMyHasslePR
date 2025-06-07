@@ -1,0 +1,198 @@
+@import url('./global.css');
+@import url('./modal.css');
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    border-bottom: 1px solid #E0E0E0;
+
+    .navbar__logo {
+        align-self: center;
+        display: flex;
+        flex-direction: row;
+        margin: 0 40px;
+        font-weight: 600;
+    }
+
+    .navbar__logo:hover {
+        cursor: pointer;
+    }
+    
+    .navbar__logo-icon {
+        margin-right: 16px;
+    }
+    
+    .navbar__links {
+        display: flex;
+        align-items: row;
+        list-style: none;
+        margin: 0;        
+    }
+    
+    .navbar__links li {
+        margin: 21.5px 16px
+    }
+    
+    .navbar__user-profile-container {
+        display: flex;
+        flex-direction: row;
+        margin-left: auto;
+        height: 40px;
+        margin: 13px 40px 13px auto;
+        align-items: center;
+
+        .navbar__create-ticket-button {
+            background-color: var(--secondary-color);
+            color: #FFFFFF;
+            height: 100%;
+            width: 125px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            margin-right: 32px;
+            cursor: pointer;
+        }
+
+        .navbar__user-profile {
+            cursor: pointer;
+        }
+
+        .navbar__user-profile img {
+            margin-top: 3px;
+            height: 40px;
+            width: 40px;
+            border-radius: 20px;
+        }
+    }
+
+    
+}
+
+main {
+    margin: 20px 24px;
+
+    .main-container {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+    }
+
+    .top-solvers__title {
+        font-size: 22px;
+        font-weight: 700;
+    }
+
+    .top-solvers__item {
+        display: flex;
+        flex-direction: row;
+        height: 72px;
+        width: 100%;
+        min-width: 200px;
+
+        .top-solvers__item-image img {
+            height: 56px;
+            width: 56px;
+            border-radius: 28px;
+            margin: 8px 16px;
+        }
+
+        .top-solvers__item-user-container {
+            margin-right: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: start;
+            
+
+            .top-solvers__item-name {
+                font-size: 16;
+                font-weight: 500;
+                color: var(--primary-color);
+                overflow: hidden;
+            }
+
+            .top-solvers__item-rating {
+                font-size: 14px;
+                color: var(--gray-color);
+                overflow: hidden;
+            }
+        }
+
+
+    }
+
+    .latest-tickets__title {
+        font-size: 32px;
+        font-weight: 700;
+        margin: 0px auto 16px 16px;
+    }
+
+    .latest-tickets__list {
+        margin: 13px 17px auto 17px;
+    }
+
+    .latest-tickets__item {
+        display: flex;
+        flex-direction: row;
+        height: 72px;
+        font-size: 14px;
+        border: 1px solid var(--light-gray-color);
+
+        .latest-tickets__item-title {
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            width: 420px;
+            margin-left: 16px;
+        }
+    
+        .latest-tickets__item-status {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 150px;
+            font-weight: 500;
+
+            .latest-tickets__item-status-span{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 32px;
+                width: 122px;
+                background-color: var(--light-gray-color);
+                border-radius: 8px;
+            }
+        }
+    
+        .latest-tickets__item-asker{ 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 150px;
+            color: var(--gray-color);
+        }
+    
+        .latest-tickets__item-created-at {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 150px;
+            color: var(--gray-color);
+        }
+    }
+
+    .latest-tickets__item:last-child {
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+
+    .latest-tickets__item:first-child {
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+    }
+    
+
+
+}
+

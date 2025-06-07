@@ -1,0 +1,131 @@
+.sign-up-modal-overlay, .log-in-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); /* напівпрозорий чорний фон */
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.sign-up-modal-overlay--visible, .log-in-modal-overlay--visible {
+    display: flex;
+}
+
+.sign-up-modal, .log-in-modal{
+    width: 650px;
+    height: auto;
+    border: 2px solid var(--gray-color);
+    border-radius: 30px;
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    flex-direction: column;
+    z-index: 1000;
+    padding-bottom: 13px;
+
+
+    .sign-up-modal__title, .log-in-modal__title {
+        font-size: 28px;
+        font-weight: 600;
+        margin-bottom: 12px;
+        margin-top: 25px;
+    }
+
+    .sign-up-modal__error-message, .log-in-modal__error-message {
+        display: none;
+        font-size: 12px;
+        width: 300px;
+        height: 35px;
+        border: 1px solid red;
+        border-radius: 8px;
+        margin-bottom: 12px;
+        padding: 10px;
+        color: red;
+        text-align: center;
+    }
+
+    .sign-up-modal__error-message--visible, .log-in-modal__error-message--visible {
+        display: block;
+    }
+
+    .sign-up-modal__log-in-redirect, .log-in-modal__log-in-redirect {
+        font-size: 14px;
+        color: var(--gray-color);
+
+        .sign-up-modal__log-in-redirect-link, .log-in-modal__log-in-redirect-link {
+            cursor: pointer;
+        }
+    }
+
+    .sign-up-modal__inputs-container, .log-in-modal__inputs-container {
+        display: flex;
+        flex-direction: column;
+
+        .sign-up-modal__inputs-container-input-wrapper, .log-in-modal__inputs-container-input-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-items: start;
+
+            .sign-up-modal__input_title, .log-in-modal__input_title {
+                font-size: 16px;
+                margin-bottom: 8px;
+                margin-top: 12px;
+                font-weight: 500;
+            }
+
+            .sign-up-modal__input, .log-in-modal__input  {
+                width: 300px;
+                height: 35px;
+                border: 1px solid var(--gray-color);
+                border-radius: 8px;
+                margin-bottom: 8px;
+                padding: 10px;
+            }
+            
+            .sign-up-modal__input:hover, .log-in-modal__input:hover {
+                border: 1px solid var(--secondary-color);
+            }
+            .sign-up-modal__input:focus, .log-in-modal__input:focus  {
+                border: 1px solid var(--secondary-color);
+                outline: none;
+            }
+
+            
+            
+        }
+
+        .sign-up-modal__button, .log-in-modal__button {
+            width: 300px;
+            height: 35px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            margin-top: 12px;
+            padding: 10px;
+            background-color: var(--secondary-color);
+            color: white;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+        }
+    }
+}
+
+@keyframes shake {
+    0%   { transform: translateX(0); }
+    25%  { transform: translateX(-5px); }
+    50%  { transform: translateX(5px); }
+    75%  { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+  }
+  
+  .shake {
+    animation: shake 0.3s ease;
+  }
