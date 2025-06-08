@@ -10,7 +10,7 @@ import {
     closeModal
 } from './modalUtils.js'
 
-import { userExistsValidation } from './userService.js'
+import { userLogIn } from './userService.js'
 
 const logInModalOverlay = document.querySelector('.log-in-modal-overlay');
 const logInButton = document.querySelector('.log-in-modal__button');
@@ -67,22 +67,26 @@ logInButton.addEventListener('click', async (event) => {
 
     if (isEmailValid
         && isUsernameValid) {
-            const isUserExists = await userExistsValidation(usernameInput, emailInput, errorMessage);
-            if (!isUserExists) {
+            const logInAnswer = await userLogIn(usernameInput, emailInput, passwordInput);
+            if (logInAnswer === 'user_accessed') {
                 localStorage.setItem('isLogedIn', 'true')
-                createNewUser();
                 closeModal(event,
-                    signUpModalOverlay,
+                    logInModalOverlay,
                      logInButton,
                       errorMessage,
                        errorMessageVisibleClassName,
                         modalOverlayVisibleClassName,
                          usernameInput,
                           emailInput,
-                          passwordInput,
-                           confirmPasswordInput);
+                          passwordInput);
+            } else if (logInAnswer === 'user_dont_exist') {
+                errorMessage.textContent = "Username or email does not exists";
+                errorMessage.classList.add(errorMessageVisibleClassName);
+            } else if (logInAnswer === 'wrong_password') {
+                errorMessage.textContent = "Password incorrect";
+                errorMessage.classList.add(errorMessageVisibleClassName);
             }
         } else {
-            console.log('wrong data for user creation')
+            console.log('wrong data for user log in')
         }
 });

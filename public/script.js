@@ -12,8 +12,10 @@ async function getTopSolvers() {
 
 const topSolversList = document.querySelector('.top-solvers__list');
 
-const userProfileButton = document.querySelector('.navbar__user-profile')
-const userProfileDropdown = document.querySelector(".navbar__user-profile-dropdown")
+const userProfileButton = document.querySelector('.navbar__user-profile');
+const userProfileDropdown = document.querySelector(".navbar__user-profile-dropdown");
+
+const logOutButton = document.querySelector('#log_out_button');
 
 if (topSolversList) {
     getTopSolvers().then(users => {
@@ -34,8 +36,26 @@ if (topSolversList) {
     })
 }
 
-userProfileButton.addEventListener('click', () => {
-    userProfileDropdown.classList.toggle('navbar__user-profile-dropdown--open')
+userProfileButton.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (localStorage.getItem('isLogedIn') === 'true') {
+        userProfileDropdown.classList.toggle('navbar__user-profile-dropdown--open');
+    }
 })
+
+
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.navbar__user-profile-dropdown') && !e.target.closest('.navbar__user-profile')) {
+      if (userProfileDropdown.classList.contains('navbar__user-profile-dropdown--open')) {
+        userProfileDropdown.classList.remove('navbar__user-profile-dropdown--open');
+      }
+    }
+});
+
+logOutButton.addEventListener("click", (e) => {
+    e.stopPropagation();
+    localStorage.setItem('isLogedIn', 'false');
+    userProfileDropdown.classList.remove('navbar__user-profile-dropdown--open');
+});
 
 
