@@ -1,3 +1,4 @@
+//validation for sign Up
 export async function userExistsValidation(usernameInput, emailInput) {
     const username = usernameInput.value.trim();
     const email = emailInput.value.trim();
@@ -14,6 +15,7 @@ export async function userExistsValidation(usernameInput, emailInput) {
     return result.exists;
 }
 
+//validation for log In
 export async function userLogIn(usernameInput, emailInput, passwordInput) {
     const username = usernameInput.value.trim();
     const email = emailInput.value.trim();
@@ -31,6 +33,6 @@ export async function userLogIn(usernameInput, emailInput, passwordInput) {
     });
 
     const result = await response.json();
-    return result.answer;
+    return result;
     
 }

@@ -12,6 +12,9 @@ import {
 
 import { userExistsValidation } from './userService.js'
 
+import { User } from './User.js';
+import { saveUser } from './authServise.js';
+
 const userProfileButtonUnsigned = document.querySelector('.navbar__user-profile');
 const signUpModalOverlay = document.querySelector('.sign-up-modal-overlay');
 const createTicketButton = document.querySelector('.navbar__create-ticket-button')
@@ -55,7 +58,13 @@ function createNewUser() {
             emailInput: emailInput.value.trim(),
             passwordInput: passwordInput.value.trim()
         })
-    }).then(answ => console.warn(answ.status, answ.statusText))
+    }).then(answ => {
+        console.warn(answ.status, answ.statusText);
+        return answ.json();
+    }).then(userData => {
+        const user = new User(userData.id, userData.username, userData.email, userData.avatar, userData.count_of_posts);
+        saveUser(user);
+    })
 }
 
 signUpButton.addEventListener('click', async (event) => {

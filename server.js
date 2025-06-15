@@ -28,11 +28,12 @@ app.post('/users', async (req, res) => {
     const newUser = req.body;
     console.log(newUser);
     const hashedPassword = await bcrypt.hash(newUser.passwordInput, 10);
-    await pool.query(`INSERT INTO users (username, email, password_hash, count_of_posts, avatar)
-                        VALUES ($1, $2, $3, $4, $5)`,
+    const queryResult = await pool.query(`INSERT INTO users (username, email, password_hash, count_of_posts, avatar)
+                        VALUES ($1, $2, $3, $4, $5)
+                        RETURNING id, username, email, avatar, count_of_posts`,
                     [newUser.username, newUser.emailInput, hashedPassword, 0, '/default-avatar.webp']);
     res.status(201);
-    res.end();
+    res.json(queryResult.rows[0]);
 });
 
 //check if user exist in db for sign up
@@ -47,7 +48,7 @@ app.post('/users/existsSign', async (req, res) => {
     if (result.rows.length > 0) {
         res.json({ exists: true });
     } else {
-        res.json({ exists: false });
+        res.json({ exists: false});
     }
 });
 
@@ -56,14 +57,20 @@ app.post('/users/LogIn', async (req, res) => {
     const { username, email, password } = req.body;
 
     const result = await pool.query(
-        'SELECT password_hash FROM users WHERE username = $1 AND email = $2 LIMIT 1',
+        'SELECT * FROM users WHERE username = $1 AND email = $2 LIMIT 1',
         [username, email]
     );
 
     if (result.rows.length > 0) {
         const isPasswordsMatch = await bcrypt.compare(password, result.rows[0].password_hash);
         if (isPasswordsMatch) {
-            res.status(200).json({ answer: 'user_accessed' });
+            res.status(200).json({ answer: 'user_accessed',
+                                    id: result.rows[0].id,
+                                    username: result.rows[0].username,
+                                    email: result.rows[0].email,
+                                    countOfPosts: result.rows[0].count_of_posts,
+                                    avatar: result.rows[0].avatar
+             });
         } else {
             res.status(401).json({ answer: 'wrong_password' });
         }

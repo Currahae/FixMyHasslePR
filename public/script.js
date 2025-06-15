@@ -1,3 +1,5 @@
+import { restoreUser, getCurrentUser, clearCurrentUser } from "./authServise.js";
+
 if (!localStorage.getItem('isLogedIn')) {
     localStorage.setItem('isLogedIn', 'false')
 }
@@ -55,7 +57,11 @@ document.addEventListener('click', (e) => {
 logOutButton.addEventListener("click", (e) => {
     e.stopPropagation();
     localStorage.setItem('isLogedIn', 'false');
+    clearCurrentUser();
     userProfileDropdown.classList.remove('navbar__user-profile-dropdown--open');
 });
 
+restoreUser();
+const user = getCurrentUser();
+console.log(user);
 

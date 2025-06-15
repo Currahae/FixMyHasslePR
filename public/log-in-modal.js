@@ -10,6 +10,10 @@ import {
     closeModal
 } from './modalUtils.js'
 
+import { User } from './User.js'
+
+import { saveUser } from './authServise.js';
+
 import { userLogIn } from './userService.js'
 
 const logInModalOverlay = document.querySelector('.log-in-modal-overlay');
@@ -68,8 +72,11 @@ logInButton.addEventListener('click', async (event) => {
     if (isEmailValid
         && isUsernameValid) {
             const logInAnswer = await userLogIn(usernameInput, emailInput, passwordInput);
-            if (logInAnswer === 'user_accessed') {
-                localStorage.setItem('isLogedIn', 'true')
+            if (logInAnswer.answer === 'user_accessed') {
+                localStorage.setItem('isLogedIn', 'true');
+                const user = new User(logInAnswer.id, logInAnswer.username, logInAnswer.email, logInAnswer.avatar, logInAnswer.countOfPosts);
+                console.log('success login');
+                saveUser(user);
                 closeModal(event,
                     logInModalOverlay,
                      logInButton,
@@ -79,12 +86,16 @@ logInButton.addEventListener('click', async (event) => {
                          usernameInput,
                           emailInput,
                           passwordInput);
-            } else if (logInAnswer === 'user_dont_exist') {
+            } else if (logInAnswer.answer === 'user_dont_exist') {
                 errorMessage.textContent = "Username or email does not exists";
                 errorMessage.classList.add(errorMessageVisibleClassName);
-            } else if (logInAnswer === 'wrong_password') {
+                errorMessage.classList.add("shake");
+                setTimeout(()=>{errorMessage.classList.remove("shake");}, 300);
+            } else if (logInAnswer.answer === 'wrong_password') {
                 errorMessage.textContent = "Password incorrect";
                 errorMessage.classList.add(errorMessageVisibleClassName);
+                errorMessage.classList.add("shake");
+                setTimeout(()=>{errorMessage.classList.remove("shake");}, 300);
             }
         } else {
             console.log('wrong data for user log in')
