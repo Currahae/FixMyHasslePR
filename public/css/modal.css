@@ -1,4 +1,4 @@
-.sign-up-modal-overlay, .log-in-modal-overlay {
+.sign-up-modal-overlay, .log-in-modal-overlay, .create-ticket-modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -11,11 +11,11 @@
     z-index: 999;
 }
 
-.sign-up-modal-overlay--visible, .log-in-modal-overlay--visible {
+.sign-up-modal-overlay--visible, .log-in-modal-overlay--visible, .create-ticket-modal-overlay--visible {
     display: flex;
 }
 
-.sign-up-modal, .log-in-modal{
+.sign-up-modal, .log-in-modal, .create-ticket-modal{
     width: 650px;
     height: auto;
     border: 2px solid var(--gray-color);
@@ -32,7 +32,7 @@
     padding-bottom: 13px;
 
 
-    .sign-up-modal__title, .log-in-modal__title {
+    .sign-up-modal__title, .log-in-modal__title, .create-ticket-modal__title {
         font-size: 28px;
         font-weight: 600;
         margin-bottom: 12px;
@@ -65,23 +65,23 @@
         }
     }
 
-    .sign-up-modal__inputs-container, .log-in-modal__inputs-container {
+    .sign-up-modal__inputs-container, .log-in-modal__inputs-container, .create-ticket-modal__inputs-container {
         display: flex;
         flex-direction: column;
 
-        .sign-up-modal__inputs-container-input-wrapper, .log-in-modal__inputs-container-input-wrapper {
+        .sign-up-modal__inputs-container-input-wrapper, .log-in-modal__inputs-container-input-wrapper, .create-ticket-modal__inputs-container-input-wrapper {
             display: flex;
             flex-direction: column;
             justify-items: start;
 
-            .sign-up-modal__input_title, .log-in-modal__input_title {
+            .sign-up-modal__input_title, .log-in-modal__input_title, .create-ticket-modal__input_title {
                 font-size: 16px;
                 margin-bottom: 8px;
                 margin-top: 12px;
                 font-weight: 500;
             }
 
-            .sign-up-modal__input, .log-in-modal__input  {
+            .sign-up-modal__input, .log-in-modal__input, .create-ticket-modal__input  {
                 width: 300px;
                 height: 35px;
                 border: 1px solid var(--gray-color);
@@ -102,7 +102,7 @@
             
         }
 
-        .sign-up-modal__button, .log-in-modal__button {
+        .sign-up-modal__button, .log-in-modal__button, .create-ticket-modal__button {
             width: 300px;
             height: 35px;
             border-radius: 8px;
@@ -117,6 +117,38 @@
         }
     }
 }
+
+.create-ticket-modal .ql-container {
+    width: 415px;
+    border: 1px solid var(--gray-color);
+    border-radius: 0 0 8px 8px;
+    margin-bottom: 8px;
+    background-color: white;
+  }
+  
+  .create-ticket-modal .ql-editor {
+    min-height: 120px;
+    padding: 10px;
+    font-size: 14px;
+    font-family: inherit;
+    color: #121417;
+    border-radius: 8px;
+    outline: none;
+  }
+  
+  /* Ховер и фокус */
+  .create-ticket-modal .ql-container:hover,
+  .create-ticket-modal .ql-container:focus-within {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 3px rgba(0, 123, 255, 0.2);
+  }
+  
+  /* Панель инструментов */
+  .create-ticket-modal .ql-toolbar {
+    border: 1px solid var(--gray-color);
+    border-radius: 8px 8px 0 0;
+    width: 415px;
+  }
 
 @keyframes shake {
     0%   { transform: translateX(0); }

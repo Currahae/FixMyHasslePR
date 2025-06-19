@@ -23,7 +23,7 @@ const signUpModalHTML = `<div class="sign-up-modal-overlay">
             <div class="sign-up-modal__error-message">Username or email already exists</div>
             <div class="sign-up-modal__log-in-redirect">Already have an account? <a class="sign-up-modal__log-in-redirect-link">Log in</a></div>
         </div>
-    </div>`
+    </div>`;
 
 
 const logInModalHTML = `<div class="log-in-modal-overlay">
@@ -47,7 +47,32 @@ const logInModalHTML = `<div class="log-in-modal-overlay">
         <div class="log-in-modal__error-message">Username or email does not exists</div>
         <div class="log-in-modal__log-in-redirect">Don't have an account? <a class="log-in-modal__log-in-redirect-link">Sign up</a></div>
     </div>
-</div>`
+</div>`;
 
-document.body.insertAdjacentHTML('beforeend', logInModalHTML);
-document.body.insertAdjacentHTML('beforeend', signUpModalHTML);
+const createTicketModal = `<div class="create-ticket-modal-overlay">
+    <div class="create-ticket-modal">
+        <div class="create-ticket-modal__title">Create Ticket</div>
+        <div class="create-ticket-modal__inputs-container">
+            <div class="create-ticket-modal__inputs-container-input-wrapper">
+                <span class="create-ticket-modal__input_title">Issue Title</span>
+                <input class="create-ticket-modal__input" type="text" name="issue_title" id="issue_title" placeholder="Enter issue title">
+            </div>
+            <div class="create-ticket-modal__inputs-container-input-wrapper">
+                <span class="create-ticket-modal__input_title">Description</span>
+                <div id="quill-editor" style="height: 200px;"></div>
+            </div>
+            <input class="create-ticket-modal__button" type="button" value="Create" style="width: 150px;">
+        </div>
+    </div>
+</div>`;
+
+
+
+if (localStorage.getItem('isLogedIn') === 'false') {
+    document.body.insertAdjacentHTML('beforeend', logInModalHTML);
+    document.body.insertAdjacentHTML('beforeend', signUpModalHTML);
+}
+
+if (localStorage.getItem('isLogedIn') === 'true') {
+    document.body.insertAdjacentHTML('beforeend', createTicketModal);
+}

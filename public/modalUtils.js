@@ -30,6 +30,15 @@ export function closeModal(event,
     }
 }
 
+export function closeCreateTicketModal(event, modal, titleInput, descInput) {
+    if (event.target === modal) {
+        inputValidState(titleInput);
+        titleInput.value = '';
+        descInput.setText('');
+        modal.classList.remove('create-ticket-modal-overlay--visible');
+    }
+}
+
 export function inputInvalidState(input) {
     input.style.borderColor = 'red';
     input.classList.add('shake');
