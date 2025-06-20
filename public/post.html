@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Post Details</title>
+    <link rel="stylesheet" href="css/post.css">
+    <link rel="shortcut icon" href="tab-icon.png" type="image/x-icon" />
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="navbar__logo">
+                <a href="index.html" style="all: unset;">
+                    <div class="navbar__logo-icon">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M0.333333 0.333333H4.7778V4.7778H9.2222V9.2222H13.6667V13.6667H0.333333V0.333333V0.333333Z" fill="#121417"/>
+                            </svg>
+                    </div>
+                    <div class="navbar__logo-text">FixMyHassle</div>
+                </a>
+            </div>
+            <ul class="navbar__links">
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="#">Tickets</a></li>
+                <li><a href="#">Solvers</a></li>
+            </ul>
+            <div class="navbar__user-profile-container">
+                <div class="navbar__create-ticket-button">Create Ticket</div>
+                <div class="navbar__user-profile">
+                    <img src="default-avatar.webp" alt="cat photo">
+                    <div class="navbar__user-profile-dropdown">
+                        <ul class="navbar__user-profile-dropdown-list">
+                            <li class="navbar__user-profile-dropdown-list-element" id="log_out_button">Log Out</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="post-container">
+            <h1 class="post-title">Loading...</h1>
+            <p><strong>Author:</strong> <span class="post-author"></span></p>
+            <p><strong>Created at:</strong> <span class="post-date"></span></p>
+            <div class="post__delete-ticket-button">Delete</div>
+
+            <div class="post-content-container">
+                <div class="post-content"></div>
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="script.js"></script>
+    <script type="module" src="post.js"></script>
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script type="module" src="modal-loader.js"></script>
+    <script type="module" src="sign-up-modal.js"></script>
+    <script type="module" src="log-in-modal.js"></script>
+    <script type="module" src="create-ticket-modal.js"></script>
+</body>
+</html>

@@ -30,8 +30,8 @@ export function closeModal(event,
     }
 }
 
-export function closeCreateTicketModal(event, modal, titleInput, descInput) {
-    if (event.target === modal) {
+export function closeCreateTicketModal(event, modal, titleInput, descInput, createButton) {
+    if (event.target === modal || (event.target === createButton && isValidIssueTitle(titleInput.value))) {
         inputValidState(titleInput);
         titleInput.value = '';
         descInput.setText('');
@@ -60,6 +60,11 @@ export function isValidUsername(username) {
     return usernameRegex.test(username)
 }
 
+export function isValidIssueTitle(title) {
+    const titleRegex = /^.{4,}$/
+    return titleRegex.test(title)
+}
+
 export function clearAllInputs(usernameInput, emailInput, passwordInput, ...confirmPasswordInput) {
     usernameInput.value = '';
     emailInput.value = '';
@@ -72,10 +77,8 @@ export function clearAllInputs(usernameInput, emailInput, passwordInput, ...conf
 export function usernameInputValidation(usernameInput) {
     const username = usernameInput.value.trim();
     if (!isValidUsername(username)) {
-        console.log('Некорректный username');
         inputInvalidState(usernameInput);
     } else {
-        console.log('username корректный');
         inputValidState(usernameInput);
     }
 
@@ -87,9 +90,19 @@ export function emailInputValidation(emailInput) {
     if (!isValidEmail(email)) {
         inputInvalidState(emailInput);
     } else {
-        console.log('Email корректный');
         inputValidState(emailInput);
     }
 
     return isValidEmail(email)
+}
+
+export function titleInputValidation(titleInput) {
+    const title = titleInput.value.trim();       
+    if (!isValidIssueTitle(title)) {
+        inputInvalidState(titleInput);
+    } else {
+        inputValidState(titleInput);
+    }
+
+    return isValidIssueTitle(title)
 }

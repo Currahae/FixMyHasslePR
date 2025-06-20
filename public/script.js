@@ -59,6 +59,7 @@ logOutButton.addEventListener("click", (e) => {
     localStorage.setItem('isLogedIn', 'false');
     clearCurrentUser();
     userProfileDropdown.classList.remove('navbar__user-profile-dropdown--open');
+    location.reload();
 });
 
 restoreUser();

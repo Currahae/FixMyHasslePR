@@ -1,0 +1,60 @@
+@import url('./global.css');
+@import url('./modal.css');
+
+.post-container {
+    max-width: 720px;
+    margin: 60px auto;
+    padding: 0 20px;
+    color: #121417;
+  
+    .post-title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+  
+    .post-author {
+      color: #6c757d;
+      font-size: 15px;
+    }
+  
+    .post-date {
+      color: #6c757d;
+      font-size: 15px;
+    }
+
+    .post__delete-ticket-button {
+        background-color: rgb(194, 52, 52);
+        color: #ffffff;
+        height: 35px;
+        width: 125px;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        margin-right: 32px;
+        cursor: pointer;
+        margin-bottom: 8px;
+    }
+
+    .post__delete-ticket-button--visible {
+        display: flex;
+    }
+  
+    p {
+      margin: 4px 0 16px;
+    }
+  
+    .post-content-container {
+      background-color: #fff;
+      padding: 12px 0;
+      border-top: 1px solid #eee;
+  
+      .post-content {
+        font-size: 16px;
+        line-height: 1.6;
+        color: #333;
+      }
+    }
+  }
+  

@@ -79,5 +79,57 @@ app.post('/users/LogIn', async (req, res) => {
     }
 });
 
+//create new post
+app.post('/posts', async (req, res) => {
+    const userID = req.body['userID'];
+    const issueTitle = req.body['issueTitle'];
+    const issueDescription = req.body['issueDescription'];
+    const creationDate = req.body['creationDate'];
+    const username = req.body['username'];
+
+    const postCreatingPool = await pool.query(
+        `INSERT INTO posts (user_id, author_name, title, content, created_at, status)
+                        VALUES ($1, $2, $3, $4, $5, $6)
+                        RETURNING id, user_id, author_name, title, content, created_at, status;`,
+                        [userID, username, issueTitle, issueDescription, creationDate, 'Open']
+    );
+
+    await pool.query(
+        `UPDATE users SET count_of_posts = count_of_posts + 1 WHERE id = $1`,
+        [userID]
+    );
+
+    res.status(201);
+    res.json(postCreatingPool.rows[0]);
+});
+
+//get all posts
+app.get('/posts', async (req, res) => {
+    const result = await pool.query('SELECT * FROM posts');
+    res.json(result.rows);
+});
+
+//app get single post
+app.get('/posts/:id', async (req, res) => {
+    const postId = req.params.id;
+
+    const result = await pool.query(
+        `SELECT * FROM posts WHERE posts.id = $1`,
+    [postId]
+    );
+
+    res.json(result.rows[0]);
+});
+
+app.post('/posts/delete', async (req, res) => {
+    const postId = req.body['postID'];
+
+    await pool.query(`DELETE FROM posts WHERE id = $1;`, [postId])
+
+    res.status(200).end()
+})
+
+
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Сервер работает на порту ${PORT}`));
